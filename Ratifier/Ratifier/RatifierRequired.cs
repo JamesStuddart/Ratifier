@@ -1,10 +1,13 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Ratifier
 {
     public partial class Ratifier
     {
-        private static void RequiredCheck(object obj, bool ignoreChildren = false)
+        private static void RequiredCheck(object obj)
         {
             var type = obj.GetType();
 
@@ -14,27 +17,15 @@ namespace Ratifier
 
                 if (attr != null)
                 {
-                    var value = prop.GetValue(obj);
-
-                    if (value == null)
+                    if (prop.GetValue(obj) == null)
                     {
                         throw new RequiredFieldException();
                     }
-
-
-                    //if its a string make sure its actually got something in it
-                    //var valueAsString = prop.GetValue(obj) as string;
-                    //if (string.IsNullOrWhiteSpace(valueAsString))
-                    //{
-                    //    throw new RequiredFieldException();
-
-                    //}
-
                 }
-            }
         }
-
-
-
     }
+
+
+
+}
 }

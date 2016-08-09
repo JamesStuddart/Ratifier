@@ -9,7 +9,7 @@ namespace Ratifier
 {
     public partial class Ratifier
     {
-        private static void MaxLengthCheck(object obj, bool ignoreChildren = false)
+        private static void MaxLengthCheck(object obj)
         {
             var type = obj.GetType();
 
@@ -30,7 +30,7 @@ namespace Ratifier
             }
         }
 
-        private static void MinLengthCheck(object obj, bool ignoreChildren = false)
+        private static void MinLengthCheck(object obj)
         {
             var type = obj.GetType();
 

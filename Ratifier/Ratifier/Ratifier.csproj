@@ -45,6 +45,7 @@
     <Compile Include="Ratifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatifierLengths.cs" />
+    <Compile Include="RatifierNull.cs" />
     <Compile Include="RatifierRegEx.cs" />
     <Compile Include="RatifierRequired.cs" />
   </ItemGroup>

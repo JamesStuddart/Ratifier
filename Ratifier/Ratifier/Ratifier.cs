@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,29 +9,49 @@ namespace Ratifier
 {
     public static partial class Ratifier
     {
-        public static bool Ratify(object obj, bool ignoreChildren = false)
+        public static void Ratify(object obj)
         {
-            RequiredCheck(obj, ignoreChildren);
+            //check main item
+            DoChecks(obj);
 
-            MaxLengthCheck(obj, ignoreChildren);
-            MinLengthCheck(obj, ignoreChildren);
+            //check child objects
+            var type = obj.GetType();
 
-
-            MeetsRegExCheck(obj, ignoreChildren);
-
-            return true;
+            foreach (var prop in type.GetProperties())
+            {
+                //do check on lists
+                if (prop is IEnumerable)
+                {
+                    foreach (var item in prop as IEnumerable)
+                    {
+                        DoChecks(item);
+                    }
+                }
+                else
+                {
+                    DoChecks(prop.GetValue(obj));
+                }
+            }
         }
 
+        private static void DoChecks(object obj)
+        {
+            RequiredCheck(obj);
 
+            MaxLengthCheck(obj);
+            MinLengthCheck(obj);
 
+            MeetsRegExCheck(obj);
 
+            CanBeNullCheck(obj);
+        }
     }
 
     public static class RatifierExt
     {
-        public static bool Ratify(this object obj, bool ignoreChildren = false)
+        public static void Ratify(this object obj)
         {
-            return Ratifier.Ratify(obj, ignoreChildren);
+            Ratifier.Ratify(obj);
         }
     }
 

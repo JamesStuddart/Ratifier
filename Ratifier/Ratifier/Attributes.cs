@@ -4,19 +4,21 @@ namespace Ratifier
 {
     public class Required : Attribute { }
 
-    public class AtLeastOne : Attribute
-    {
-        internal string GroupName { get; }
+    //currently not supported
+    //public class AtLeastOne : Attribute
+    //{
+    //    internal string GroupName { get; }
 
-        public AtLeastOne(string groupName)
-        {
-            GroupName = groupName;
-        }
-        public AtLeastOne()
-        {
-            GroupName = "--Ungrouped--";
-        }
-    }
+    //    public AtLeastOne(string groupName)
+    //    {
+    //        GroupName = groupName;
+    //    }
+    //    public AtLeastOne()
+    //    {
+    //        GroupName = "--Ungrouped--";
+    //    }
+    //}
+
     public class MeetsRegEx : Attribute
     {
         internal string Pattern { get; }
@@ -57,24 +59,26 @@ namespace Ratifier
         }
     }
 
-    public class MinValue : Attribute
-    {
-        internal int Value { get; }
+    //currently not supported
+    //public class MinValue : Attribute
+    //{
+    //    internal int Value { get; }
 
-        public MinValue(int value)
-        {
-            Value = value;
-        }
-    }
-    public class MaxValue : Attribute
-    {
-        internal int Value { get; }
+    //    public MinValue(int value)
+    //    {
+    //        Value = value;
+    //    }
+    //}
 
-        public MaxValue(int value)
-        {
-            Value = value;
-        }
-    }
+    //public class MaxValue : Attribute
+    //{
+    //    internal int Value { get; }
+
+    //    public MaxValue(int value)
+    //    {
+    //        Value = value;
+    //    }
+    //}
 
 
 }
